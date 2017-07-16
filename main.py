@@ -1,6 +1,4 @@
-#TODO: possible to shorten actions.py function move parameters because the whole object player_1 is passed? Thus, no need to pass parameters which belong to this object
-#TODO: guide on how to add new enemies, items (later skills and dungeon-levels)
-
+# run this program with python 3
 import numpy as np
 import random
 import tkinter as tk
@@ -17,7 +15,7 @@ from UI import *
 
 # initializes the window in which the game is played
 window = tk.Tk()
-window.title("Gamelike")
+window.title("Roguelike_Prototype")
 window.geometry("1160x1000")
 window.configure(background='grey')
 
@@ -68,3 +66,4 @@ while True:
         raise SystemExit
     wasd = "0"
     window.update()
+    time.sleep(0.07)

@@ -1,0 +1,34 @@
+--------------------------------------------------------------------------------
+NEW CONTENT:
+--------------------------------------------------------------------------------
+
+TODO: add new level capabilities (stairs, load new level)
+TODO: add transparency (for floors, probably seperate arrays for dungeon layout and monster/item/player positions)
+TODO: make GUI scroll with movement of player (dungeon bigger than GUI)
+
+--------------------------------------------------------------------------------
+Q.O.L IMPROVEMENTS:
+--------------------------------------------------------------------------------
+
+TODO: guide on how to add new enemies, items (later skills and dungeon-levels)
+TODO: improve UI look
+TODO: text info box for user (f.e. Congratulations, you've made to lvl 2)
+
+--------------------------------------------------------------------------------
+CODE IMPROVEMENTS:
+--------------------------------------------------------------------------------
+
+TODO: possible to shorten actions.py function move parameters because the whole object player_1 is passed? Thus, no need to pass parameters which belong to this object
+
+--------------------------------------------------------------------------------
+BUG FIXES:
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+History:
+--------------------------------------------------------------------------------
+
+TODO: add support for W A S D (caps too)
+(17.6.17)

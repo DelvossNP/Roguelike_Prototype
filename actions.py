@@ -9,16 +9,16 @@ def move(wasd, items, enemies, player_1, floor_1, player_pos_x, player_pos_y, pl
     playing_field[player_pos_y, player_pos_x] = 1
     m = len(playing_field)
 
-    if wasd == "'w'":
+    if wasd == "'w'" or wasd == "'W'":
         player_pos_y -= 1
 
-    elif wasd == "'a'":
+    elif wasd == "'a'" or wasd == "'A'":
         player_pos_x -= 1
 
-    elif wasd == "'s'":
+    elif wasd == "'s'" or wasd == "'S'":
         player_pos_y += 1
 
-    elif wasd == "'d'":
+    elif wasd == "'d'" or wasd == "'D'":
         player_pos_x += 1
 
     elif wasd == "'\\x1b'":
