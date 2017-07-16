@@ -55,14 +55,10 @@ def click_info(enemies, m, grid_location_y, grid_location_x, is_floor,
             bg="red", font = ("Arial", 9), height=2, width = 20, borderwidth = 0, highlightthickness = 0)
 
     if is_floor == True:
-        click_info_empty(info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value)
 
-
-def click_info_empty(info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value):
-
-    info_monster_img.config(text = "", bg = "grey", image = None)
-    info_monster_name.config(text = "", bg = "grey")
-    info_monster_hp.config(text = "", bg = "grey")
-    info_monster_hp_value.config(text = "", bg = "grey")
-    info_monster_damage.config(text = "", bg = "grey")
-    info_monster_damage_value.config(text = "", bg = "grey")
+        info_monster_img.config(text = "", bg = "grey", image = "")
+        info_monster_name.config(text = "", bg = "grey")
+        info_monster_hp.config(text = "", bg = "grey")
+        info_monster_hp_value.config(text = "", bg = "grey")
+        info_monster_damage.config(text = "", bg = "grey")
+        info_monster_damage_value.config(text = "", bg = "grey")

@@ -1,3 +1,6 @@
+#TODO: possible to shorten actions.py function move parameters because the whole object player_1 is passed? Thus, no need to pass parameters which belong to this object
+#TODO: guide on how to add new enemies, items (later skills and dungeon-levels)
+
 import numpy as np
 import random
 import tkinter as tk
@@ -11,12 +14,26 @@ from dictionaries import *
 from actions import *
 from UI import *
 
-#TODO: possible to shorten actions.py function move parameters because the whole object player_1 is passed? Thus, no need to pass parameters which belong to this object
-#TODO: guide on how to add new enemies, items (later skills and dungeon-levels)
 
-# enemies are indicated in the main array via numbers ranging from 1001 (rat) up to 1999
-# items are indicated in the main array via numbers ranging from 2001 to 299
+# initializes the window in which the game is played
+window = tk.Tk()
+window.title("Gamelike")
+window.geometry("1160x1000")
+window.configure(background='grey')
 
+# from set image creates the array which contains all the level information
+# the array is then used to create the GUI and all the enemy/item objects and their respective dictionaries
+playing_field, m, n = dungeon_gen("images\dungeon_generation.png")
+wall_1, floor_1, player_1, rats, orcs, swords, potions = create_GUI(playing_field, m, n, window)
+# enemy/item objects can be accessed simply by their positions in the array via the following dictionaries
+enemies, items = create_dictionaries(rats, orcs, swords, potions)
+
+# creates and initializes the UI (player health, etc) and the monster info panels
+info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
+player_hp_value_label, player_mana_value_label, player_damage_value_label = init_UI(player_1, m)
+
+
+# the following two functions are responsible for processing keyboard and mouse input from the player
 def key(event):
 
     global wasd
@@ -36,27 +53,12 @@ def callback(event, playing_field):
         click_info(enemies, m, grid_location_y, grid_location_x, True,
         info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value)
 
-window = tk.Tk()
-window.title("Gamelike")
-window.geometry("1160x1000")
-window.configure(background='grey')
-
-playing_field, m, n = dungeon_gen("images\dungeon_generation.png")
-wall_1, floor_1, player_1, rats, orcs, swords, potions = create_playing_field(playing_field, m, n, window)
-
-info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
-
+# here, key() and callback() are connected to key and mouse presses respectively, playing_field is passed as an additional argument to callback (see player_interaction.py)
 wasd = window.bind("<Key>", key)
 window.bind("<Button-1>", lambda event, arg=playing_field: callback(event, arg))
 
-enemies, items = create_dictionaries(rats, orcs, swords, potions)
 
-player_hp_value_label, player_mana_value_label, player_damage_value_label = init_UI(player_1, m)
-
-window.update()
-
-wasd = "0"
-
+# Main game loop performs move input (either None or w/a/s/d) and everything following from a move, also checks for game over via player health
 while True:
 
     (player_1, player_1.pos_x, player_1.pos_y) = move(wasd, items, enemies, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,

@@ -12,6 +12,8 @@ def dungeon_gen(level_img_name):
 
     playing_field = np.zeros((m , n))
 
+    # enemies are indicated in the main array via numbers ranging from 1001 (rat) up to 1999
+    # items are indicated in the main array via numbers ranging from 2001 to 2999
     colors_map = {
             (255, 255, 255): 1,
             (0, 0, 0): 0,
@@ -35,7 +37,7 @@ def geometry_placer(img, x, y, window):
     panel = tk.Label(window, highlightthickness = 0, borderwidth = 0, image = img)
     panel.grid(row=y,column=x)
 
-def create_playing_field(playing_field, m, n, window):
+def create_GUI(playing_field, m, n, window):
 
     rats = []
     orcs = []
