@@ -51,7 +51,7 @@ window.bind("<Button-1>", lambda event, arg=playing_field: callback(event, arg))
 
 enemies, items = create_dictionaries(rats, orcs, swords, potions)
 
-init_UI(player_1, m)
+player_hp_value_label, player_mana_value_label, player_damage_value_label = init_UI(player_1, m)
 
 window.update()
 
@@ -59,7 +59,8 @@ wasd = "0"
 
 while True:
 
-    (player_1, player_1.pos_x, player_1.pos_y) = move(wasd, items, enemies, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage, window, playing_field)
+    (player_1, player_1.pos_x, player_1.pos_y) = move(wasd, items, enemies, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
+                                                        window, playing_field, player_hp_value_label, player_damage_value_label)
     if player_1.health <= 0:
         print("Game Over suckerrr")
         raise SystemExit
