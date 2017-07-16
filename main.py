@@ -41,7 +41,7 @@ window.title("Gamelike")
 window.geometry("1160x1000")
 window.configure(background='grey')
 
-playing_field, m, n = dungeon_gen("rgb_test3.png")
+playing_field, m, n = dungeon_gen("images\dungeon_generation.png")
 wall_1, floor_1, player_1, rats, orcs, swords, potions = create_playing_field(playing_field, m, n, window)
 
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
