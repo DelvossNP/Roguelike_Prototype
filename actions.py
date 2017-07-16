@@ -77,7 +77,7 @@ def fight(player_1, enemies, floor_1, player_pos_y, player_pos_x, player_pos_y_o
         return(player_1, player_pos_x, player_pos_y, playing_field)
 
     player_1.health -= enemies[(player_pos_y, player_pos_x)].damage
-    tk.Label(text = (str(player_1.health),"/","100"), bg="green",
+    tk.Label(text = (str(player_1.health)), bg="green",
     font = ("Arial", 9), height=2, width = 20, borderwidth = 0, highlightthickness = 0).grid(row = 1, column = m + 1)
     player_pos_x = player_pos_x_old
     player_pos_y = player_pos_y_old
