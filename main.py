@@ -13,10 +13,13 @@ from actions import *
 from UI import *
 
 
+
 # initializes the window in which the game is played
 window = tk.Tk()
 window.title("Roguelike_Prototype")
-window.geometry("1160x1000")
+w, h = window.winfo_screenwidth(), window.winfo_screenheight()
+window.overrideredirect(1)
+window.geometry("%dx%d+0+0" % (w, h))
 window.configure(background='grey')
 
 # from set image creates the array which contains all the level information
@@ -28,7 +31,7 @@ enemies, items = create_dictionaries(rats, orcs, swords, potions)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
-player_hp_value_label, player_mana_value_label, player_damage_value_label = init_UI(player_1, m)
+player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button = init_UI(player_1, m)
 
 
 # the following two functions are responsible for processing keyboard and mouse input from the player
@@ -62,8 +65,9 @@ while True:
     (player_1, player_1.pos_x, player_1.pos_y) = move(wasd, items, enemies, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
                                                         window, playing_field, player_hp_value_label, player_damage_value_label)
     if player_1.health <= 0:
-        print("Game Over suckerrr")
-        raise SystemExit
+        exit_game("You have died!")
+
     wasd = "0"
     window.update()
-    time.sleep(0.07)
+    # time between possible moves, add "animation" before using this, otherwise it'll feel like an uncomfortable input delay
+    # time.sleep(0.07)

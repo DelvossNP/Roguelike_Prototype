@@ -2,9 +2,12 @@ import tkinter as tk
 
 def init_UI(player_1, m):
 
+    exit_game_button = tk.Button(text="Exit Game", command=lambda : exit_game("Goodbye :("))
+    exit_game_button.grid(row=0, column=m, columnspan = 2)
+
     player_hp_label = tk.Label(text = "HP", bg="orange",
     font = ("Arial", 9), height=2, width = 7, borderwidth = 0, highlightthickness = 0)
-    player_hp_label.grid(row=1,column=m)
+    player_hp_label.grid(row=1, column=m)
 
     player_hp_value_label = tk.Label(text = (str(player_1.health)), bg="green",
     font = ("Arial", 9), height=2, width = 20, borderwidth = 0, highlightthickness = 0)
@@ -26,4 +29,9 @@ def init_UI(player_1, m):
     font = ("Arial", 9), height=2, width = 20, borderwidth = 0, highlightthickness = 0)
     player_damage_value_label.grid(row = 3, column = m + 1)
 
-    return(player_hp_value_label, player_mana_value_label, player_damage_value_label)
+    return(player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button)
+
+def exit_game(reason):
+
+    print(reason)
+    raise SystemExit
