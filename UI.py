@@ -1,8 +1,8 @@
 import tkinter as tk
 
-def init_UI(player_1, m):
+def init_UI(player_1, m, window):
 
-    exit_game_button = tk.Button(text="Exit Game", command=lambda : exit_game("Goodbye :("))
+    exit_game_button = tk.Button(text="Exit Game", command=lambda : exit_game("Goodbye :(", window))
     exit_game_button.grid(row=0, column=m, columnspan = 2)
 
     player_hp_label = tk.Label(text = "HP", bg="orange",
@@ -31,7 +31,7 @@ def init_UI(player_1, m):
 
     return(player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button)
 
-def exit_game(reason):
+def exit_game(reason, window):
 
     print(reason)
-    raise SystemExit
+    window.destroy()
