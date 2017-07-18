@@ -40,6 +40,16 @@ class orc:
         self.health = 150
         self.damage = 35
 
+class ghost:
+
+    def __init__(self, pos_x, pos_y):
+        self.name = "Ghost"
+        self.img = ImageTk.PhotoImage(Image.open("images\ghost.png"))
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.health = 120
+        self.damage = 50
+
 class sword:
 
     def __init__(self, pos_x, pos_y):

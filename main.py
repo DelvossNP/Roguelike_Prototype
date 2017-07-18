@@ -24,9 +24,9 @@ window.configure(background='grey')
 # from set image creates the array which contains all the level information
 # the array is then used to create the GUI and all the enemy/item objects and their respective dictionaries
 playing_field, m, n = dungeon_gen("images\dungeon_generation.png")
-wall_1, floor_1, player_1, rats, orcs, swords, potions = create_GUI(playing_field, m, n, window)
+wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions = create_GUI(playing_field, m, n, window)
 # enemy/item objects can be accessed simply by their positions in the array via the following dictionaries
-enemies, items = create_dictionaries(rats, orcs, swords, potions)
+enemies, items = create_dictionaries(rats, orcs, ghosts, swords, potions)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
