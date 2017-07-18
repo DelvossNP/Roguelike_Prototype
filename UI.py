@@ -1,12 +1,16 @@
 import tkinter as tk
+from PIL import ImageTk, Image
 
-def init_UI(player_1, m, window):
+def init_UI_images():
+    img_hp = ImageTk.PhotoImage(Image.open("images\player.png"))
+    return(img_hp)
+
+def init_UI(img_hp, player_1, m, window):
 
     exit_game_button = tk.Button(text="Exit Game", command=lambda : exit_game("Goodbye :(", window))
     exit_game_button.grid(row=0, column=m, columnspan = 2)
 
-    player_hp_label = tk.Label(text = "HP", bg="orange",
-    font = ("Arial", 9), height=2, width = 7, borderwidth = 0, highlightthickness = 0)
+    player_hp_label = tk.Label(highlightthickness = 0, borderwidth = 0, image = img_hp)
     player_hp_label.grid(row=1, column=m)
 
     player_hp_value_label = tk.Label(text = (str(player_1.health)), bg="green",

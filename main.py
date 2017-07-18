@@ -10,9 +10,7 @@ from dungeon_generation import *
 from player_interaction import *
 from dictionaries import *
 from actions import *
-from UI import init_UI
-from UI import exit_game
-
+from UI import *
 
 
 # initializes the window in which the game is played
@@ -32,7 +30,8 @@ enemies, items = create_dictionaries(rats, orcs, ghosts, swords, potions)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
-player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button = init_UI(player_1, m, window)
+img_hp = init_UI_images()
+player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button = init_UI(img_hp, player_1, m, window)
 
 
 # the following two functions are responsible for processing keyboard and mouse input from the player
@@ -67,6 +66,7 @@ while True:
                                                         window, playing_field, player_hp_value_label, player_damage_value_label)
     if player_1.health <= 0:
         exit_game("You have died!", window)
+        raise SystemExit
 
     wasd = "0"
     window.update()
