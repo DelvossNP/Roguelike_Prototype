@@ -17,7 +17,7 @@ from UI import exit_game
 
 # initializes the window in which the game is played
 window = tk.Tk()
-window.title("Roguelike_Prototype_Clone")
+window.title("Roguelike_Prototype")
 w, h = window.winfo_screenwidth(), window.winfo_screenheight()
 window.overrideredirect(1)
 window.geometry("%dx%d+0+0" % (w, h))
