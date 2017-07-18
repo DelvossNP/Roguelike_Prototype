@@ -24,7 +24,8 @@ TODO: possible to shorten actions.py function move parameters because the whole 
 BUG FIXES:
 --------------------------------------------------------------------------------
 
-
+TODO: Fix exit function to no longer provide error messages when clicked
+TODO: Fix click_info function to no longer provide error messages when clicked outside of playing_field
 
 --------------------------------------------------------------------------------
 History:
