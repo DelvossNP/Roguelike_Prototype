@@ -40,11 +40,11 @@ def geometry_placer(img, x, y, window):
 
 def create_GUI(playing_field, m, n, window):
 
-    rats = []
-    orcs = []
-    ghosts = []
-    swords = []
-    potions = []
+    rats_exist = False
+    orcs_exist = False
+    ghosts_exist = False
+    swords_exist = False
+    potions_exist = False
     floor_1 = floor()
     wall_1 = wall()
 
@@ -57,26 +57,45 @@ def create_GUI(playing_field, m, n, window):
                 geometry_placer(floor_1.img, j, i, window)
 
             elif playing_field[i][j] == 9:
-                player_1 = player(j, i)
+                if not ("player_1" in locals()):
+                    player_1 = player(j, i)
+                else:
+                    player_1.pos_x = j
+                    player_1.pos_y = i
                 geometry_placer(player_1.img, j, i, window)
 
             elif playing_field[i][j] == 1001:
+                if rats_exist == False:
+                    rats = []
+                    rats_exist = True
                 rats.append(rat(j, i))
                 geometry_placer(rats[0].img, j, i, window)
 
             elif playing_field[i][j] == 1002:
+                if orcs_exist == False:
+                    orcs = []
+                    orcs_exist = True
                 orcs.append(orc(j, i))
                 geometry_placer(orcs[0].img, j, i, window)
 
             elif playing_field[i][j] == 1003:
+                if ghosts_exist == False:
+                    ghosts = []
+                    ghosts_exist = True
                 ghosts.append(ghost(j, i))
                 geometry_placer(ghosts[0].img, j, i, window)
 
             elif playing_field[i][j] == 2001:
+                if swords_exist == False:
+                    swords = []
+                    swords_exist = True
                 swords.append(sword(j, i))
                 geometry_placer(swords[0].img, j, i, window)
 
             elif playing_field[i][j] == 2002:
+                if potions_exist == False:
+                    potions = []
+                    potions_exist = True
                 potions.append(potion(j, i))
                 geometry_placer(potions[0].img, j, i, window)
 
