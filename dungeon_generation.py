@@ -20,6 +20,7 @@ def dungeon_gen(level_img_name):
             (0, 0, 255): 9,
             (255, 0, 0): 1001,
             (254, 0, 0): 1002,
+            (253, 0, 0): 1003,
             (0, 255, 0): 2001,
             (0, 254, 0): 2002,
             }
@@ -41,6 +42,7 @@ def create_GUI(playing_field, m, n, window):
 
     rats = []
     orcs = []
+    ghosts = []
     swords = []
     potions = []
     floor_1 = floor()
@@ -66,6 +68,10 @@ def create_GUI(playing_field, m, n, window):
                 orcs.append(orc(j, i))
                 geometry_placer(orcs[0].img, j, i, window)
 
+            elif playing_field[i][j] == 1003:
+                ghosts.append(ghost(j, i))
+                geometry_placer(ghosts[0].img, j, i, window)
+
             elif playing_field[i][j] == 2001:
                 swords.append(sword(j, i))
                 geometry_placer(swords[0].img, j, i, window)
@@ -74,4 +80,4 @@ def create_GUI(playing_field, m, n, window):
                 potions.append(potion(j, i))
                 geometry_placer(potions[0].img, j, i, window)
 
-    return(wall_1, floor_1, player_1, rats, orcs, swords, potions)
+    return(wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions)
