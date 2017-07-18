@@ -69,3 +69,15 @@ class potion:
         self.pos_y = pos_y
         self.health = 50
         self.damage = 0
+
+# add new enemy guide:
+#
+# 1. add new class for new enemy (classes.py)
+#
+# 2. add new dictionary for new enemy and add it to the taken arguments of create_dictionaries (dictionaries.py)
+#
+# 3. add new enemy to color map (dungeon_generation.py)
+#
+# 4. add new list for new enemy, new elif and return variable in create_GUI (dungeon_generation.py)
+#
+# 5. add new enemy to object creation and dictionary connection(main.py)
