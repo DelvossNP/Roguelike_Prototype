@@ -36,7 +36,7 @@ def init_level(img, window):
     return(playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects)
 
 
-playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\dungeon_test.png", window)
+playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\level_1.png", window)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
@@ -70,36 +70,28 @@ wasd = window.bind("<Key>", key)
 
 
 # Main game loop performs move input (either None or w/a/s/d) and everything following from a move, also checks for game over via player health
-while True:
+def main_game_loop(items, enemies, map_objects, player_1, floor_1, window, playing_field, player_hp_value_label, player_damage_value_label):
 
-    player_1, player_1.pos_x, player_1.pos_y, level_exit = move(wasd, items, enemies, map_objects, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
+    global wasd
+
+    while True:
+
+        player_1, player_1.pos_x, player_1.pos_y, level_exit = move(wasd, items, enemies, map_objects, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
                                                         window, playing_field, player_hp_value_label, player_damage_value_label)
-    if player_1.health <= 0:
-        exit_game("You have died!", window)
-        raise SystemExit
+        if player_1.health <= 0:
+            exit_game("You have died!", window)
+            raise SystemExit
 
-    if level_exit == True:
-        break
+        if level_exit == True:
+            break
 
-    wasd = "0"
-    window.update()
-    # time between possible moves, add "animation" before using this, otherwise it'll feel like an uncomfortable input delay
-    # time.sleep(0.07)
+        wasd = "0"
+        window.update()
+    return(player_1)
 
-playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\dungeon_test2.png", window)
+main_game_loop(items, enemies, map_objects, player_1, floor_1, window, playing_field, player_hp_value_label, player_damage_value_label)
 
-while True:
-
-    player_1, player_1.pos_x, player_1.pos_y, level_exit = move(wasd, items, enemies, map_objects, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
-                                                        window, playing_field, player_hp_value_label, player_damage_value_label)
-    if player_1.health <= 0:
-        exit_game("You have died!", window)
-        raise SystemExit
-
-    if level_exit == True:
-        break
-
-    wasd = "0"
-    window.update()
+playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\level_2.png", window)
+main_game_loop(items, enemies, map_objects, player_1, floor_1, window, playing_field, player_hp_value_label, player_damage_value_label)
 
 raise SystemExit

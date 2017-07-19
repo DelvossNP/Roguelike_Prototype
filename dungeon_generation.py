@@ -104,4 +104,19 @@ def create_GUI(playing_field, m, n, window):
                 stairs_1 = stairs(j, i)
                 geometry_placer(stairs_1.img, j, i, window)
 
+    enemy_exists_list = [rats_exist, orcs_exist, ghosts_exist]
+
+    enemy_dict = {
+                rats_exist : rats,
+                orcs_exist : orcs,
+                ghosts_exist : ghosts
+    }
+
+    for i in enemy_exists_list:
+        if i == True:
+
+            enemy_1 = enemy_dict[i]
+            print(enemy_1[0].health)
+
+
     return(wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1)
