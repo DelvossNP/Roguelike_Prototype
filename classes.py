@@ -70,10 +70,7 @@ class potion:
         self.health = 50
         self.damage = 0
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1fd88093822bbfe07ad1a8f217d4f9cbfdec1747
 class stairs:
 
     def __init__(self, pos_x, pos_y):
@@ -81,8 +78,6 @@ class stairs:
         self.img = ImageTk.PhotoImage(Image.open("images\player.png"))
         self.pos_x = pos_x
         self.pos_y = pos_y
-<<<<<<< HEAD
-=======
 
 
 # add new enemy guide:
@@ -96,4 +91,3 @@ class stairs:
 # 4. add new list for new enemy, new elif and return variable in create_GUI (dungeon_generation.py)
 #
 # 5. add new enemy to object creation and dictionary connection(main.py)
->>>>>>> 1fd88093822bbfe07ad1a8f217d4f9cbfdec1747
