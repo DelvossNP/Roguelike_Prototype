@@ -1,4 +1,4 @@
-def create_dictionaries(rats, orcs, ghosts, swords, potions):
+def create_dictionaries(rats, orcs, ghosts, swords, potions, stairs_1):
 
     enemies = {
             # replaced by the for loops below, which add connections from x, y positions to monsters
@@ -12,6 +12,10 @@ def create_dictionaries(rats, orcs, ghosts, swords, potions):
             # (potions[0].pos_y, potions[0].pos_x): potions[0],
         }
 
+    map_objects = {
+            # same as above
+        }
+
 
     for i in range(len(rats)):
         enemies.update({(rats[i].pos_y, rats[i].pos_x): rats[i]})
@@ -22,11 +26,12 @@ def create_dictionaries(rats, orcs, ghosts, swords, potions):
     for i in range(len(ghosts)):
         enemies.update({(ghosts[i].pos_y, ghosts[i].pos_x): ghosts[i]})
 
-
     for i in range(len(swords)):
         items.update({(swords[i].pos_y, swords[i].pos_x): swords[i]})
 
     for i in range(len(potions)):
         items.update({(potions[i].pos_y, potions[i].pos_x): potions[i]})
 
-    return(enemies, items)
+    map_objects.update({(stairs_1.pos_y, stairs_1.pos_x): stairs_1})
+
+    return(enemies, items, map_objects)
