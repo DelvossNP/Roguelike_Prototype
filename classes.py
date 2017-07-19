@@ -69,3 +69,11 @@ class potion:
         self.pos_y = pos_y
         self.health = 50
         self.damage = 0
+
+class stairs:
+
+    def __init__(self, pos_x, pos_y):
+        self.name = "Stairs"
+        self.img = ImageTk.PhotoImage(Image.open("images\player.png"))
+        self.pos_x = pos_x
+        self.pos_y = pos_y

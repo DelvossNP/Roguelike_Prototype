@@ -1,13 +1,15 @@
 from dungeon_generation import geometry_placer
 import tkinter as tk
 
-def move(wasd, items, enemies, player_1, floor_1, player_pos_x, player_pos_y, player_damage, window, playing_field, player_hp_value_label, player_damage_value_label):
+def move(wasd, items, enemies, map_objects, player_1, floor_1, player_pos_x, player_pos_y, player_damage, window,
+        playing_field, player_hp_value_label, player_damage_value_label):
 
     wasd = str(wasd)
     player_pos_x_old = player_pos_x
     player_pos_y_old = player_pos_y
     playing_field[player_pos_y, player_pos_x] = 1
     m = len(playing_field)
+    level_exit = False
 
     if wasd == "'w'" or wasd == "'W'":
         player_pos_y -= 1
@@ -26,34 +28,45 @@ def move(wasd, items, enemies, player_1, floor_1, player_pos_x, player_pos_y, pl
         raise SystemExit
 
     else:
-        return(player_1, player_pos_x, player_pos_y)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
 
     if playing_field[player_pos_y, player_pos_x] == 0:
         player_pos_x = player_pos_x_old
         player_pos_y = player_pos_y_old
         playing_field[player_pos_y, player_pos_x] = 9
-        return(player_1, player_pos_x, player_pos_y)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
 
     # monsters are assigned numbers from 1001 to 1999 in the array
     elif 1000 < playing_field[player_pos_y, player_pos_x] < 2000:
 
         (player_1, player_pos_x, player_pos_y, playing_field) = fight(player_1, enemies, floor_1,
         player_pos_y, player_pos_x, player_pos_y_old, player_pos_x_old, playing_field, window, m, player_hp_value_label)
-        return(player_1, player_pos_x, player_pos_y)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
 
     elif 2000 < playing_field[player_pos_y, player_pos_x] < 3000:
         playing_field[player_pos_y, player_pos_x] = 9
         geometry_placer(player_1.img, player_pos_x, player_pos_y, window)
         geometry_placer(floor_1.img, player_pos_x_old, player_pos_y_old, window)
         pick_up_item(items, player_1, player_pos_y, player_pos_x, m, player_hp_value_label, player_damage_value_label)
-        return(player_1, player_pos_x, player_pos_y)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
+
+    elif 3000 < playing_field[player_pos_y, player_pos_x] < 4000:
+        player_pos_x = player_pos_x_old
+        player_pos_y = player_pos_y_old
+        playing_field[player_pos_y, player_pos_x] = 9
+        level_exit = map_object_interaction(map_objects, player_1, player_pos_y, player_pos_x, level_exit)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
 
     else:
         playing_field[player_pos_y, player_pos_x] = 9
         geometry_placer(player_1.img, player_pos_x, player_pos_y, window)
         geometry_placer(floor_1.img, player_pos_x_old, player_pos_y_old, window)
-        return(player_1, player_pos_x, player_pos_y)
+        return(player_1, player_pos_x, player_pos_y, level_exit)
 
+def map_object_interaction(map_objects, player_1, player_pos_y, player_pos_x, level_exit):
+
+    level_exit = True
+    return(level_exit)
 
 def pick_up_item(items, player_1, player_pos_y, player_pos_x, m, player_hp_value_label, player_damage_value_label):
     player_1.damage += items[(player_pos_y, player_pos_x)].damage

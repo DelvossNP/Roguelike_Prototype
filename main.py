@@ -21,12 +21,22 @@ window.overrideredirect(1)
 window.geometry("%dx%d+0+0" % (w, h))
 window.configure(background='grey')
 
-# from set image creates the array which contains all the level information
-# the array is then used to create the GUI and all the enemy/item objects and their respective dictionaries
-playing_field, m, n = dungeon_gen("images\dungeon_generation.png")
-wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions = create_GUI(playing_field, m, n, window)
-# enemy/item objects can be accessed simply by their positions in the array via the following dictionaries
-enemies, items = create_dictionaries(rats, orcs, ghosts, swords, potions)
+
+def init_level(img, window):
+
+    # new level is generated via these 3 lines
+    # from set image creates the array which contains all the level information
+    # the array is then used to create the GUI and all the enemy/item objects and their respective dictionaries
+    playing_field, m, n = dungeon_gen(img)
+    wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1 = create_GUI(playing_field, m, n, window)
+    # enemy/item objects can be accessed simply by their positions in the array via the following dictionaries
+    enemies, items, map_objects = create_dictionaries(rats, orcs, ghosts, swords, potions, stairs_1)
+    # apparently binding again is necessary because the playing_field argument doesn't automatically get updated from the old one
+    window.bind("<Button-1>", lambda event, arg=playing_field: callback(event, arg))
+    return(playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects)
+
+
+playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\dungeon_test.png", window)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
@@ -56,19 +66,40 @@ def callback(event, playing_field):
 
 # here, key() and callback() are connected to key and mouse presses respectively, playing_field is passed as an additional argument to callback (see player_interaction.py)
 wasd = window.bind("<Key>", key)
-window.bind("<Button-1>", lambda event, arg=playing_field: callback(event, arg))
+# window.bind("<Button-1>", lambda event, arg=playing_field: callback(event, arg))
 
 
 # Main game loop performs move input (either None or w/a/s/d) and everything following from a move, also checks for game over via player health
 while True:
 
-    (player_1, player_1.pos_x, player_1.pos_y) = move(wasd, items, enemies, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
+    player_1, player_1.pos_x, player_1.pos_y, level_exit = move(wasd, items, enemies, map_objects, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
                                                         window, playing_field, player_hp_value_label, player_damage_value_label)
     if player_1.health <= 0:
         exit_game("You have died!", window)
         raise SystemExit
 
+    if level_exit == True:
+        break
+
     wasd = "0"
     window.update()
     # time between possible moves, add "animation" before using this, otherwise it'll feel like an uncomfortable input delay
     # time.sleep(0.07)
+
+playing_field, m, n, wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1, enemies, items, map_objects = init_level("images\dungeon_test2.png", window)
+
+while True:
+
+    player_1, player_1.pos_x, player_1.pos_y, level_exit = move(wasd, items, enemies, map_objects, player_1, floor_1, player_1.pos_x, player_1.pos_y, player_1.damage,
+                                                        window, playing_field, player_hp_value_label, player_damage_value_label)
+    if player_1.health <= 0:
+        exit_game("You have died!", window)
+        raise SystemExit
+
+    if level_exit == True:
+        break
+
+    wasd = "0"
+    window.update()
+
+raise SystemExit

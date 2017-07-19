@@ -23,6 +23,7 @@ def dungeon_gen(level_img_name):
             (253, 0, 0): 1003,
             (0, 255, 0): 2001,
             (0, 254, 0): 2002,
+            (0, 0, 254): 3001,
             }
 
     for i in range(0, m):
@@ -99,4 +100,8 @@ def create_GUI(playing_field, m, n, window):
                 potions.append(potion(j, i))
                 geometry_placer(potions[0].img, j, i, window)
 
-    return(wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions)
+            elif playing_field[i][j] == 3001:
+                stairs_1 = stairs(j, i)
+                geometry_placer(stairs_1.img, j, i, window)
+
+    return(wall_1, floor_1, player_1, rats, orcs, ghosts, swords, potions, stairs_1)
