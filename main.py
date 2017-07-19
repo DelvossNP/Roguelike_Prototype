@@ -30,8 +30,8 @@ enemies, items = create_dictionaries(rats, orcs, ghosts, swords, potions)
 
 # creates and initializes the UI (player health, etc) and the monster info panels
 info_monster_img, info_monster_name, info_monster_hp, info_monster_hp_value, info_monster_damage, info_monster_damage_value = init_monster_info(m)
-img_hp, img_hp_bar = init_UI_images()
-player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button = init_UI(img_hp, img_hp_bar, player_1, m, window)
+img_hp, img_hp_bar, img_mana, img_mana_bar = init_UI_images()
+player_hp_value_label, player_mana_value_label, player_damage_value_label, exit_game_button = init_UI(img_hp, img_hp_bar, img_mana, img_mana_bar, player_1, m, window)
 
 
 # the following two functions are responsible for processing keyboard and mouse input from the player
